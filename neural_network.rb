@@ -1,15 +1,24 @@
 # require 'narray'
+require 'matrix'
 
 class Neural_netword
-    attr_accessor :size
-    def initialize(size = [3, 6, 3])
+    attr_accessor :size, :inputs
+    def initialize(size = [2, 2, 2], inputs)
 
 
         @size = size
+        @inputs = inputs
+
+        @neuron_values = Array.new(@size.length)
+        @neuron_values[0] = @inputs
 
         @biases = create_biases(size)
         @weights = create_weights(size)
         
+
+        p @inputs
+        p @biases
+        p @weights
     end
 
     def create_biases(size)
@@ -51,10 +60,19 @@ class Neural_netword
         return weights
     end
     
+    # def feed_forward(@neuron_values)
+    #     @neuron_values.each_with_index do |x, index|
+
     
-    
+    # end
+
+
+    def sigmoid(x)
+        out = 1/(1+Math.exp(-x))
+    end
     
 end
 
 
-network = Neural_netword.new([1, 2, 1, 2])
+network = Neural_netword.new([2, 2], [35, 0.2])
+
