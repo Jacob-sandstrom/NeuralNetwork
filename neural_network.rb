@@ -9,16 +9,19 @@ class Neural_netword
         @size = size
         @inputs = inputs
 
-        @neuron_values = Array.new(@size.length)
+        @neuron_values = Array.new(@size.length, [])
         @neuron_values[0] = @inputs
 
         @biases = create_biases(size)
         @weights = create_weights(size)
         
-
-        p @inputs
+        p @neuron_values
+        # p @inputs
         p @biases
         p @weights
+        print "\n"
+
+        feed_forward
     end
 
     def create_biases(size)
@@ -60,15 +63,27 @@ class Neural_netword
         return weights
     end
     
-    # def feed_forward(@neuron_values)
-    #     @neuron_values.each_with_index do |x, index|
+    def feed_forward
+        @weights.each_with_index do |x, n|
+            new_values = []
+            x.each_with_index do |y, i|
+                result = []
+                y.each_with_index do |z, j|
+                    result[j] = @neuron_values[n][j] * @weights[n][i][j]
+                end
+                dot_product = result.sum
+                dp_plus_bias = dot_product + @biases[n][i]
+                new_values[i] = sigmoid(dp_plus_bias)
+            end
+            @neuron_values[n+1] = new_values
+        end
+    end
+
 
     
-    # end
-
 
     def sigmoid(x)
-        out = 1/(1+Math.exp(-x))
+        return 1/(1+Math.exp(-x))
     end
     
 end
