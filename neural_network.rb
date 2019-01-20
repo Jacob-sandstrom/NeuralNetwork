@@ -17,11 +17,12 @@ class Neural_netword
         
         p @neuron_values
         # p @inputs
-        p @biases
-        p @weights
+        # p @biases
+        # p @weights
         print "\n"
 
         feed_forward
+        p @neuron_values
     end
 
     def create_biases(size)
@@ -80,7 +81,7 @@ class Neural_netword
     end
 
 
-    
+
 
     def sigmoid(x)
         return 1/(1+Math.exp(-x))
@@ -89,5 +90,5 @@ class Neural_netword
 end
 
 
-network = Neural_netword.new([2, 2], [35, 0.2])
+network = Neural_netword.new([4, 2, 3, 2], [35, 0.2, -12, -4])
 
