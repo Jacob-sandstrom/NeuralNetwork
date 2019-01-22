@@ -15,14 +15,14 @@ class Neural_netword
         @biases = create_biases(size)
         @weights = create_weights(size)
         
-        p @neuron_values
+        # p @neuron_values
         # p @inputs
         # p @biases
         # p @weights
-        print "\n"
+        # print "\n"
 
         feed_forward
-        p @neuron_values
+        # p @neuron_values
     end
 
     def create_biases(size)
@@ -81,10 +81,26 @@ class Neural_netword
     end
 
 
+    def backprop
+
+
+        
+        # partial_weight_derivate = 
+
+
+        # partial_bias_derivate = 
+        # partial_weight_derivate = 
+
+
+    end
 
 
     def sigmoid(x)
         return 1/(1+Math.exp(-x))
+    end
+
+    def derivate_sigmoid(x)
+        return sigmoid(x)*(1-sigmoid(x))
     end
     
 end
